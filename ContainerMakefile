@@ -26,7 +26,7 @@ help:
 
 .PHONY: lint
 lint: ## TODO: with hadolint or similar
-	$(call title,Building container image khulnasoft-lab/test_image:$(NAME))
+	$(call title,Building container image khulnasoft/test_image:$(NAME))
 	docker run --rm -i hadolint/hadolint hadolint --ignore DL3033 - < Dockerfile
 
 .PHONY: build
@@ -36,15 +36,15 @@ build: ## build container with the current Dockerfile
 ifneq ("$(wildcard scripts/setup.sh)", "")
 	./scripts/setup.sh
 endif
-	$(call title,Building container image khulnasoft-lab/test_image:$(NAME))
-	docker build -t khulnasoft-lab/test_images:$(NAME) .
+	$(call title,Building container image khulnasoft/test_image:$(NAME))
+	docker build -t khulnasoft/test_images:$(NAME) .
 
 .PHONY: push
 push: build ## push built container to Docker Hub
-	$(call title,Pushing container image to docker hub khulnasoft-lab/test_image:$(NAME))
-	docker push khulnasoft-lab/test_images:$(NAME)
+	$(call title,Pushing container image to docker hub khulnasoft/test_image:$(NAME))
+	docker push khulnasoft/test_images:$(NAME)
 
 .PHONY: clean
 clean: ## Remove images with the assigned tag for test_images
-	$(call title,Removing image khulnasoft-lab/test_image:$(NAME))
-	docker rmi khulnasoft-lab/test_images:$(NAME)
+	$(call title,Removing image khulnasoft/test_image:$(NAME))
+	docker rmi khulnasoft/test_images:$(NAME)
