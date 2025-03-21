@@ -1,0 +1,3 @@
+#this should be an oracle java binary
+with: java0.019.0.1+10-21
+and 18.0.2 has nothing to do with the version
